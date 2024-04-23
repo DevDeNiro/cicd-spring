@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Test') {
             agent {
-                docker { image 'openjdk:8-jdk' }
+                docker { image 'openjdk:21-jdk' }
             }
             steps {
                 sh 'mvn test'
