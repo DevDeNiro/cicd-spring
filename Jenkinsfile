@@ -7,10 +7,6 @@ pipeline {
     }
 
     stages {
-        maven 'Maven'
-    }
-
-    stages {
         stage('Clone Repository') {
             steps {
                 git 'https://github.com/Jukiyoomi/cicd-spring.git'
