@@ -2,13 +2,11 @@ pipeline {
     agent any
 
     tools {
-<<<<<<< HEAD
-        maven 'Maven' // Utilise la version par défaut de Maven
-        jdk 'JDK' // Utilise la version par défaut de JDK
+        maven 'Maven'
+        jdk 'JDK'
     }
 
     stages {
-=======
         maven 'Maven'
     }
 
@@ -23,7 +21,6 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
->>>>>>> 2373e8c (update JenkinsFile with Build, Test & Sonar)
         stage('Test') {
             steps {
                 sh 'mvn test'
@@ -38,7 +35,7 @@ pipeline {
         }
     }
     post {
-        always {
+         always {
             junit '**/target/surefire-reports/*.xml'
         }
         success {
