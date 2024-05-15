@@ -30,7 +30,10 @@ pipeline {
                     def scannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     withSonarQubeEnv('sonar') {
                         sh "echo $pwd"
-                        sh "${scannerHome}/bin/sonar-scanner"
+                        sh "mvn sonar:sonar \
+                              -Dsonar.projectKey=com.example:testing-web-complete \
+                              -Dsonar.host.url=http://192.168.1.79:9000 \
+                              -Dsonar.login=217f2d453bef4eb5802c6dce4f726fe37d0631c4"
                     }
                 }
             }
@@ -39,7 +42,7 @@ pipeline {
         stage("SonarQube Quality Gate Check") {
             steps {
                 script {
-                def qualityGate = waitForQualityGate()
+                    def qualityGate = waitForQualityGate()
 
                     if (qualityGate.status != 'OK') {
                         echo "${qualityGate.status}"
