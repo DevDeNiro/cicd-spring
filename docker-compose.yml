@@ -18,6 +18,23 @@ services:
       - sonarqube_logs:/opt/sonarqube/logs
     ports:
       - "9000:9000"
+    networks:
+      - sonarqube-network
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    container_name: jenkins-lts
+    volumes:
+      - ~/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
+    networks:
+      - sonarqube-network
 
   db:
     image: postgres:12
@@ -38,6 +55,8 @@ services:
       - postgresql_data:/var/lib/postgresql/data
     ports:
       - "5432:5433"
+    networks:
+      - sonarqube-network
 
 volumes:
   sonarqube_data:
@@ -45,3 +64,7 @@ volumes:
   sonarqube_logs:
   postgresql:
   postgresql_data:
+
+networks:
+  sonarqube-network:
+    driver: bridge

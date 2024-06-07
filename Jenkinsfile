@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Jukiyoomi/cicd-spring.git'
+                git 'https://github.com/DevDeNiro/cicd-spring.git'
             }
         }
         stage('Build') {
