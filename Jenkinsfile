@@ -25,13 +25,12 @@ pipeline {
         stage('SonarQube Code Analysis') {
             steps {
                 dir("${WORKSPACE}"){
-                // Run SonarQube analysis for Python
                 script {
                     def scannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     withSonarQubeEnv('sonar') {
                         sh "echo $pwd"
                         sh "mvn sonar:sonar \
-                              -Dsonar.projectKey=com.example:testing-web-complete \
+                              -Dsonar.projectKey=cicd-spring \
                               -Dsonar.host.url=http://172.19.0.4:9000"
                     }
                 }
