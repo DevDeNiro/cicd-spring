@@ -1,0 +1,9 @@
+@startuml
+
+actor Administrateur as Admin
+
+rectangle EPSIFLIX {
+    (mettre à jour contenu) as (MAJ)
+}
+
+@enduml
