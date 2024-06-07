@@ -32,8 +32,7 @@ pipeline {
                         sh "echo $pwd"
                         sh "mvn sonar:sonar \
                               -Dsonar.projectKey=com.example:testing-web-complete \
-                              -Dsonar.host.url=http://172.19.0.4:9000 \
-                              -Dsonar.login=squ_2bdf6703ead1f5d478b44f3f9e9be4e99d3a70b5"
+                              -Dsonar.host.url=http://172.19.0.4:9000"
                     }
                 }
             }
